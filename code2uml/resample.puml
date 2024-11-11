@@ -1,0 +1,39 @@
+@startuml
+title Resample Method Activity Diagram
+
+start
+
+:Receive resample call;
+:Check if axis is specified;
+if (axis is specified) then (yes)
+    :Convert axis to axis number;
+    if (axis == 1) then (yes)
+        :Warn about deprecation of axis=1;
+    else (no)
+        :Warn about deprecation of axis keyword;
+    endif
+else (no)
+    :Set axis to 0;
+endif
+
+:Check if kind is specified;
+if (kind is specified) then (yes)
+    :Warn about deprecation of kind keyword;
+else (no)
+    :Set kind to None;
+endif
+
+:Check if convention is specified;
+if (convention is specified) then (yes)
+    :Warn about deprecation of convention keyword;
+else (no)
+    :Set convention to "start";
+endif
+
+:Call get_resampler method;
+:Create TimeGrouper object;
+:Return resampler object;
+
+stop
+
+@enduml
